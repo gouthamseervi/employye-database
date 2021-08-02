@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Employee DB</title>
+</head>
+
+<body>
+  <header class="v-header container">
+    <div class="fullscreen-video-wrap">
+      <video src="back.mp4" autoplay="true" loop="true"></video>
+    </div>
+    <div class="header-overlay"></div>
+    <div class="header-content">
+    <nav class="navbar navbar-expand-xl navbar-light" style="background-color: black; height:8%;">
+      <a class="navbar-brand" href="/" style="font-size: 2.2rem; color:white">Employee DB</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link myclass" href="/list" style="color:white;font-size:2.2rem;margin-left:45px">LIST<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/new" style="font-size:2.2rem; color:white; margin-left:275px">+Add Employee<span class="sr-only">(surrent)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div>
+    <h3 class="container" style="margin-top: 100px;color: black"> List of all the employees</h3>
+
+    <table class="table" style="margin-top: 30px">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Salary</th>
+          <th scope="col">State</th>
+          <th scope="col">Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% employees.forEach((employee)=>{ %>
+        <tr>
+          <td><b><%= employee.Name %></b></td>
+          <td><b><%=  employee.Designation %></b></td>
+          <td><b><%= employee.Salary %></b></td>
+          <td><b><%= employee.State %></b></td>
+          <td>
+            <a href="/new/<%= employee.id %>" sytle="text-decoration: none"><button type="submit" class="btn btn-primary">Edit</button></a>
+            <form action="/delete/<%= employee.id %>" method="POST" style="display: inline">
+              <input type="hidden" name="_operation" value="delete">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</header>
+</body>
